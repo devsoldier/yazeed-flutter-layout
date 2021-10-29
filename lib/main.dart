@@ -28,6 +28,12 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  bool _nomsg = true;
+  // void checkMessage(){
+  // setState((){
+  //   if (items[index].message.isEmpty)
+  //   });
+  // }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,10 +67,9 @@ class _MyHomePageState extends State<MyHomePage> {
                               width: 60,
                               height: 60,
                               child: Image(
-                                image: NetworkImage(
-                                    items[index].avatar == null
-                                    ? 'https://cdn.icon-icons.com/icons2/2506/PNG/512/user_icon_150670.png': items[index].avatar.toString()
-                                    ),                                    
+                                image: NetworkImage(items[index].avatar == null
+                                    ? 'https://cdn.icon-icons.com/icons2/2506/PNG/512/user_icon_150670.png'
+                                    : items[index].avatar.toString()),
                                 fit: BoxFit.fill,
                               ),
                             ),
@@ -124,28 +129,33 @@ class _MyHomePageState extends State<MyHomePage> {
                                         items[index].last_seen_time.toString()),
                                   ),
                                   // Number of chats
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                        top: 8, left: 8, right: 8),
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      child: Text(
-                                        items[index].message == null
-                                        ? '0' : items[index].message.toString(),                                        
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                            fontSize: 16,
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      width: 30,
-                                      height: 30,
-                                      decoration: new BoxDecoration(
-                                        color: Colors.purple[300],
-                                        shape: BoxShape.circle,
-                                      ),
-                                    ),
-                                  ),
+                                  FutureBuilder(builder: (context, data) {
+                                    if (items[index].message == null)
+                                      return Container(child: Text(''));
+                                    else {
+                                      return Padding(
+                                        padding: EdgeInsets.only(
+                                            top: 8, left: 8, right: 8),
+                                        child: Container(
+                                          alignment: Alignment.center,
+                                          child: Text(
+                                            items[index].message.toString(),
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                                fontSize: 16,
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                          width: 30,
+                                          height: 30,
+                                          decoration: new BoxDecoration(
+                                            color: Colors.purple[300],
+                                            shape: BoxShape.circle,
+                                          ),
+                                        ),
+                                      );
+                                    }
+                                  }),
                                 ],
                               ),
                             ),

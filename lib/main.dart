@@ -62,7 +62,9 @@ class _MyHomePageState extends State<MyHomePage> {
                               height: 60,
                               child: Image(
                                 image: NetworkImage(
-                                    items[index].avatar.toString()),
+                                    items[index].avatar == null
+                                    ? 'https://cdn.icon-icons.com/icons2/2506/PNG/512/user_icon_150670.png': items[index].avatar.toString()
+                                    ),                                    
                                 fit: BoxFit.fill,
                               ),
                             ),
@@ -128,7 +130,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: Text(
-                                        items[index].id.toString(),
+                                        items[index].message == null
+                                        ? '0' : items[index].message.toString(),                                        
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                             fontSize: 16,

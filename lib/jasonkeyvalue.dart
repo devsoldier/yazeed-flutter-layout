@@ -1,5 +1,5 @@
 class UserDataModel {
-  int? id;
+  int? message;
   String? first_name;
   String? last_name;
   String? username;
@@ -8,7 +8,7 @@ class UserDataModel {
   String? status;
 
   UserDataModel({
-    this.id,
+    this.message,
     this.first_name,
     this.last_name,
     this.username,
@@ -18,7 +18,7 @@ class UserDataModel {
   });
 
   UserDataModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+    message = json['messages'];
     first_name = json['first_name'];
     last_name = json['last_name'];
     username = json['username'];
